@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f5f7;
+    color: #222;
+}
+
+.site-header {
+    background-color: #181818;
+    color: #fff;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d4af37;
+    letter-spacing: 0.5px;
+}
+
+.site-header nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.site-header nav a:hover {
+    color: #d4af37;
+}
+
+.auth-wrapper {
+    max-width: 960px;
+    margin: 45px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    flex: 1 1 380px;
+    padding: 30px;
+    border-radius: 8px;
+    border-top: 4px solid #d4af37;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h2 {
+    margin: 0 0 8px;
+    color: #181818;
+    font-size: 22px;
+}
+
+.subtitle {
+    margin: 0 0 22px;
+    color: #666;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.25s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #d4af37;
+}
+
+.btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #181818;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.btn-secondary {
+    background-color: #d4af37;
+    color: #181818;
+}
+
+.btn-secondary:hover {
+    background-color: #c29d28;
+}

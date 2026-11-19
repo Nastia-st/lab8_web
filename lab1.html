@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №8</title>
+    <link rel="stylesheet" href="lab1.css">
+</head>
+<body>
+    <h2>Лабораторна робота №8</h2>
+    
+    <table class="tabs-table">
+        <tr>
+            <td id="tab1" class="tab-btn active" onclick="info_for_tab(1)">Назва 1</td>
+            <td id="tab2" class="tab-btn" onclick="info_for_tab(2)">Назва 2</td>
+            <td id="tab3" class="tab-btn" onclick="info_for_tab(3)">Назва 3</td>
+            <td id="tab4" class="tab-btn" onclick="info_for_tab(4)">Назва 4</td>
+            <td id="tab5" class="tab-btn" onclick="info_for_tab(5)">Назва 5</td>
+        </tr>
+        <tr>
+            <td colspan="5" id="content-cell">
+                <div class="content-container">
+                    <div class="content-text">
+                        <h3>Інформація першого табу</h3>
+                        <p>Це вміст для <b>Назви 1</b>. DOM API дозволяє динамічно керувати структурою, текстом та стилями елементів сторінки без її перезавантаження.</p>
+                    </div>
+                    <img id="tab-image" class="content-image" src="https://picsum.photos/id/1015/400/300" alt="Зображення 1">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        const tabData = {
+            1: {
+                title: "Інформація першого табу",
+                text: "Це вміст для <b>Назви 1</b>. DOM API дозволяє динамічно керувати структурою, текстом та стилями елементів сторінки без її перезавантаження.",
+                image: "https://picsum.photos/id/1015/400/300",
+                bgColor: "#ffffff"
+            },
+            2: {
+                title: "Опис другого напрямку",
+                text: "Тут представлена інформація для <b>Назви 2</b>. Використання методів <code>document.getElementById()</code> дає змогу швидко знаходити та змінювати вміст через властивість <code>innerHTML</code>.",
+                image: "https://picsum.photos/id/1025/400/300",
+                bgColor: "#f9fcff"
+            },
+            3: {
+                title: "Третій інфо-блок",
+                text: "Вітаємо у розділі <b>Назва 3</b>! Кожен таб має власне унікальне оформлення, підключене за допомогою CSS-властивостей через об'єкт <code>style</code>.",
+                image: "https://picsum.photos/id/1043/400/300",
+                bgColor: "#fdfefe"
+            },
+            4: {
+                title: "Четверта закладинка",
+                text: "Розділ <b>Назва 4</b> демонструє гнучкість об'єктної моделі документа. Завдяки подіям кліку миші ми можемо повністю перемикати контекст інформації.",
+                image: "https://picsum.photos/id/1069/400/300",
+                bgColor: "#fefcf9"
+            },
+            5: {
+                title: "Фінальний п'ятий таб",
+                text: "Це контент для <b>Назви 5</b>. Тут також динамічно оновлюється графічне зображення та підлаштовується загальний дизайн елемента.",
+                image: "https://picsum.photos/id/1074/400/300",
+                bgColor: "#faf9fe"
+            }
+        };
+
+        function info_for_tab(tabNumber) {
+            for (let i = 1; i <= 5; i++) {
+                let btn = document.getElementById('tab' + i);
+                if (i === tabNumber) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            }
+
+            const data = tabData[tabNumber];
+
+            document.getElementById('content-cell').innerHTML = `
+                <div class="content-container">
+                    <div class="content-text">
+                        <h3>${data.title}</h3>
+                        <p>${data.text}</p>
+                    </div>
+                    <img id="tab-image" class="content-image" src="${data.image}" alt="Зображення ${tabNumber}">
+                </div>
+            `;
+
+            document.getElementById('content-cell').style.backgroundColor = data.bgColor;
+        }
+    </script>
+</body>
+</html>

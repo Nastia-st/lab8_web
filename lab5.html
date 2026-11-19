@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизація та реєстрація</title>
+    <link rel="stylesheet" href="lab5.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav>
+            <a href="#">Головна</a>
+            <a href="#">Каталог годинників</a>
+            <a href="#">Контакти</a>
+        </nav>
+    </header>
+
+    <main class="auth-wrapper">
+        <section class="auth-card">
+            <h2>Вхід до акаунту</h2>
+            <p class="subtitle">Увійдіть, щоб переглядати замовлення та обрані моделі</p>
+
+            <form onsubmit="return validateLoginForm()">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="text" id="loginEmail" placeholder="client@chronostore.ua">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" placeholder="Введіть пароль">
+                </div>
+
+                <button type="submit" class="btn-primary">Увійти</button>
+            </form>
+        </section>
+
+        <section class="auth-card">
+            <h2>Реєстрація клієнта</h2>
+            <p class="subtitle">Створіть профіль покупця в магазині</p>
+
+            <form onsubmit="return validateRegisterForm()">
+                <div class="form-group">
+                    <label for="regName">Ім'я та прізвище</label>
+                    <input type="text" id="regName" placeholder="Анастасія Статівка">
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="text" id="regEmail" placeholder="client@chronostore.ua">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassword">Пароль</label>
+                    <input type="password" id="regPassword" placeholder="Мінімум 6 символів">
+                </div>
+
+                <div class="form-group">
+                    <label for="regConfirmPassword">Підтвердження пароля</label>
+                    <input type="password" id="regConfirmPassword" placeholder="Повторіть пароль">
+                </div>
+
+                <button type="submit" class="btn-secondary">Зареєструватися</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        function validateLoginForm() {
+            let email = document.getElementById("loginEmail").value.trim();
+            let password = document.getElementById("loginPassword").value;
+            let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+            if (email === "") {
+                alert("Будь ласка, введіть Email для входу");
+                return false;
+            }
+
+            if (!email.match(emailRegex)) {
+                alert("Будь ласка, введіть коректну адресу електронної пошти.");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Будь ласка, введіть пароль.");
+                return false;
+            }
+
+            alert("Дані входу коректні. Виконується вхід...");
+            return true;
+        }
+
+        function validateRegisterForm() {
+            let username = document.getElementById("regName").value.trim();
+            let email = document.getElementById("regEmail").value.trim();
+            let password = document.getElementById("regPassword").value;
+            let confirmPassword = document.getElementById("regConfirmPassword").value;
+            let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+            if (username === "") {
+                alert("Будь ласка, введіть ваше ім'я та прізвище.");
+                return false;
+            }
+
+            if (email === "") {
+                alert("Поле Email є обов'язковим для реєстрації.");
+                return false;
+            }
+
+            if (!email.match(emailRegex)) {
+                alert("Введено некоректний формат Email.");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Будь ласка, створіть пароль.");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Пароль має містити щонайменше 6 символів.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Паролі не співпадають.");
+                return false;
+            }
+
+            alert("Реєстрація пройшла успішно! Ласкаво просимо");
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин годинників</title>
+    <link rel="stylesheet" href="lab3.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav>
+            <a href="#">Головна</a>
+            <a href="#">Каталог</a>
+            <a href="#">Новинки</a>
+            <a href="#">Контакти</a>
+        </nav>
+    </header>
+    <section class="slider-section">
+        <div class="slider-container">
+            <div class="slides-wrapper" id="slidesWrapper"></div>
+            <div class="slider-caption" id="sliderCaption">
+                Елегантні настінні годинники
+            </div>
+        </div>
+        <div class="slider-controls">
+            <span class="control-btn" onclick="prevSlide()">Prev</span> 
+            <span>|</span> 
+            <span class="control-btn" onclick="nextSlide()">Next</span>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <h2>Ласкаво просимо до нашого магазину годинників!</h2>
+        <p>Оберіть свій ідеальний стиль серед широкого асортименту швейцарських та брендових годинників.</p>
+    </main>
+
+    <script>
+        const slidesData = [
+            {
+                img: "1.jpg", 
+                title: "Елегантні настінні годинники"
+            },
+            {
+                img: "2.jpg", 
+                title: "Сучасні смарт-годинники"
+            },
+            {
+                img: "3.jpg", 
+                title: "Сучасні мінімалістичні моделі"
+            },
+            {
+                img: "4.jpg", 
+                title: "Розкішні настінні годинники під заказ"
+            },
+            {
+                img: "5.jpg", 
+                title: "Мінімалістичні жіночі годинники"
+            }
+        ];
+
+        let currentIndex = 0;
+        function renderSlider() {
+            const wrapper = document.getElementById('slidesWrapper');
+            const caption = document.getElementById('sliderCaption');
+            wrapper.innerHTML = '';
+
+            for (let i = -2; i <= 2; i++) {
+                let index = (currentIndex + i + slidesData.length) % slidesData.length;
+                
+                const slideDiv = document.createElement('div');
+                let positionClass = '';
+                if (i === 0) positionClass = 'slide-center';
+                else if (i === -1) positionClass = 'slide-near-left';
+                else if (i === -2) positionClass = 'slide-far-left';
+                else if (i === 1) positionClass = 'slide-near-right';
+                else if (i === 2) positionClass = 'slide-far-right';
+                slideDiv.className = `slide-item ${positionClass}`;
+                slideDiv.innerHTML = `<img src="${slidesData[index].img}" alt="Годинник">`;
+                
+                slideDiv.onclick = () => {
+                    currentIndex = index;
+                    renderSlider();
+                };
+                wrapper.appendChild(slideDiv);
+            }
+            caption.textContent = slidesData[currentIndex].title;
+        }
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slidesData.length;
+            renderSlider();
+        }
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slidesData.length) % slidesData.length;
+            renderSlider();
+        }
+        window.onload = renderSlider;
+    </script>
+</body>
+</html>

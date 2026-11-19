@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма підбору будинку</title>
+    <link rel="stylesheet" href="lab4.css">
+</head>
+<body>
+    <div class="form-card">
+        <h2>Форма підбору будинку</h2>
+        <form name="form" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label>Прізвище:</label>
+                <input type="text" name="surname">
+                <div id="surnamef" class="error-msg"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Ім'я:</label>
+                <input type="text" name="name">
+                <div id="namef" class="error-msg"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" name="email" placeholder="yourmail@gmail.com">
+                <div id="emailf" class="error-msg"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Номер телефону:</label>
+                <input type="text" name="phone" placeholder="+380501234567">
+                <div id="phonef" class="error-msg"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Адреса:</label>
+                <input type="text" name="address">
+            </div>
+
+            <div class="form-group">
+                <label>Оберіть тип житла:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="housing" value="Квартира"> Квартира</label>
+                    <label><input type="radio" name="housing" value="Таунхаус"> Таунхаус</label>
+                    <label><input type="radio" name="housing" value="Будинок"> Будинок</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Оберіть кількість кімнат:</label>
+                <select name="rooms">
+                    <option value="Однокімнатні">Однокімнатні</option>
+                    <option value="Двокімнатні">Двокімнатні</option>
+                    <option value="Трикімнатні">Трикімнатні</option>
+                    <option value="Багатокімнатні">Багатокімнатні</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Оберіть бажану ціну:</label>
+                <div class="range-container">
+                    <input type="range" min="500" max="10000" step="100" value="3500" oninput="document.getElementById('priceVal').innerText = this.value + '$'">
+                    <span id="priceVal">3500$</span>
+                </div>
+            </div>
+
+            <div class="form-group checkbox-row">
+                <label><input type="checkbox" name="pets"> Є домашні тварини</label>
+            </div>
+
+            <div class="form-group">
+                <label>Додаткові побажання:</label>
+                <textarea name="wishes" rows="3"></textarea>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">Відправити</button>
+                <button type="reset" class="btn-cancel">Скасувати</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function validateForm() {
+            document.getElementById('surnamef').innerHTML = '';
+            document.getElementById('namef').innerHTML = '';
+            document.getElementById('emailf').innerHTML = '';
+            document.getElementById('phonef').innerHTML = '';
+
+            let surname = document.forms['form']['surname'].value.trim();
+            let name = document.forms['form']['name'].value.trim();
+            let email = document.forms['form']['email'].value.trim();
+            let phone = document.forms['form']['phone'].value.trim();
+            let isValid = true;
+
+            if (surname.length === 0) {
+                document.getElementById('surnamef').innerHTML = '*дане поле обов’язкове для заповнення';
+                isValid = false;
+            }
+
+            if (name.length === 0) {
+                document.getElementById('namef').innerHTML = '*дане поле обов’язкове для заповнення';
+                isValid = false;
+            }
+
+            let at = email.indexOf("@");
+            let dot = email.indexOf(".");
+            if (email.length === 0) {
+                document.getElementById('emailf').innerHTML = '*дане поле обов’язкове для заповнення';
+                isValid = false;
+            } else if (at < 1 || dot < 1 || dot <= at + 1) {
+                document.getElementById('emailf').innerHTML = '*email введено не вірно';
+                isValid = false;
+            }
+
+            if (phone.length === 0) {
+                document.getElementById('phonef').innerHTML = '*введіть номер телефону';
+                isValid = false;
+            }
+            return isValid;
+        }
+    </script>
+</body>
+</html>
